@@ -1,0 +1,57 @@
+
+FOLLOW THIS TUTORIAL:
+https://www.digitalocean.com/community/tutorials/how-to-scale-and-secure-a-django-application-with-docker-nginx-and-let-s-encrypt
+
+Based on
+https://github.com/do-community/django-polls
+
+0.
+docker network create -d bridge ctd_bridge_net
+docker network ls
+
+1.
+Get a database service running:
+docker run --network=ctd_bridge_net --name db -d \
+-e POSTGRES_DB=polls \
+-e POSTGRES_USER=polls \
+-e POSTGRES_PASSWORD=polls \
+postgres
+
+2.
+Build the image from the Dockerfile
+docker build -t polls .
+
+3.
+Use docker run to override the CMD set in the Dockerfile and create the database
+schema defined in the app code:
+$ docker run \
+--network=ctd_bridge_net \
+--env-file env \
+polls \
+sh -c "python manage.py makemigrations && python manage.py migrate"
+
+4.
+Run another instance of the app container and use an interactive shell inside of
+it to create an administrative user for the Django project:
+$ docker run \
+--network=ctd_bridge_net \
+-i -t \
+--env-file env \
+polls \
+sh
+
+5.
+This will provide you with a shell prompt inside of the running container which
+you can use to create the Django use
+$ python manage.py createsuperuser
+
+6.
+Generate the static files for the app
+$ docker run \
+--network=ctd_bridge_net \
+--env-file env \
+polls sh -c "python manage.py collectstatic --noinput"
+
+7.
+Run the app by running the default command defined in the Dockerfile:
+$ docker run --env-file env -p 80:8000 polls
