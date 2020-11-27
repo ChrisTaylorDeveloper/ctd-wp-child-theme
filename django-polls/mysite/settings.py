@@ -123,22 +123,43 @@ USE_TZ = True
 
 # Moving static assets to DigitalOcean Spaces as per:
 # https://www.digitalocean.com/community/tutorials/how-to-set-up-object-storage-with-django
-AWS_ACCESS_KEY_ID = os.getenv('STATIC_ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = os.getenv('STATIC_SECRET_KEY')
+#AWS_ACCESS_KEY_ID = os.getenv('STATIC_ACCESS_KEY_ID')
+#AWS_SECRET_ACCESS_KEY = os.getenv('STATIC_SECRET_KEY')
 
-AWS_STORAGE_BUCKET_NAME = os.getenv('STATIC_BUCKET_NAME')
-AWS_S3_ENDPOINT_URL = os.getenv('STATIC_ENDPOINT_URL')
-AWS_S3_OBJECT_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-AWS_LOCATION = 'static'
-AWS_DEFAULT_ACL = 'public-read'
-AWS_QUERYSTRING_AUTH = False
+#AWS_STORAGE_BUCKET_NAME = os.getenv('STATIC_BUCKET_NAME')
+#AWS_S3_ENDPOINT_URL = os.getenv('STATIC_ENDPOINT_URL')
+#AWS_S3_OBJECT_PARAMETERS = {
+#    'CacheControl': 'max-age=86400',
+#}
+#AWS_LOCATION = 'static'
+#AWS_DEFAULT_ACL = 'public-read'
+#AWS_QUERYSTRING_AUTH = False
 
-STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+#STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
-STATIC_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, AWS_LOCATION)
-STATIC_ROOT = 'static/'
+# If using Object storeage e.g. Digital Ocean Spaces.
+# STATIC_URL = '{}/{}/'.format(AWS_S3_ENDPOINT_URL, AWS_LOCATION)
+# Tells Django to append static to the base url when searching for static files.
+STATIC_URL = '/static/'
+
+# The STATICFILES_DIRS tuple tells Django where to look for static files that 
+# are not tied to a particular app. In this case, we just told Django to also 
+# look for static files in a folder called static in our root folder, not just in our apps.
+
+# Django also provides a mechanism for collecting static files into one place so
+# that they can be served easily. Using the collectstatic command, Django looks 
+# for all static files in your apps and collects them wherever you told it to, 
+# i.e. the STATIC_ROOT. In our case, we are telling Django that when we run 
+# python manage.py collectstatic, gather all static files into a folder called 
+# staticfiles in our project root directory. This feature is very handy for 
+# serving static files, especially in production settings.
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Logging Configuration
 
