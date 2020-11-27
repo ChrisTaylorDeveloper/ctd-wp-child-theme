@@ -143,23 +143,22 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 # Tells Django to append static to the base url when searching for static files.
 STATIC_URL = '/static/'
 
-# The STATICFILES_DIRS tuple tells Django where to look for static files that 
-# are not tied to a particular app. In this case, we just told Django to also 
-# look for static files in a folder called static in our root folder, not just in our apps.
-
-# Django also provides a mechanism for collecting static files into one place so
-# that they can be served easily. Using the collectstatic command, Django looks 
-# for all static files in your apps and collects them wherever you told it to, 
-# i.e. the STATIC_ROOT. In our case, we are telling Django that when we run 
-# python manage.py collectstatic, gather all static files into a folder called 
-# staticfiles in our project root directory. This feature is very handy for 
-# serving static files, especially in production settings.
-
+# STATICFILES_DIRS tells Django where to look for static files that are not
+# tied to a particular app.
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+# In this case, we just told Django to also look for static files in a folder
+# called static in our root folder, not just in our apps.
 
+# Django provides a mechanism for collecting static files into one place so
+# they can be served easily. Using the collectstatic command, Django looks 
+# for all static files in your apps and collects them in STATIC_ROOT.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# In our case, we are telling Django that when we run 
+# python manage.py collectstatic, gather all static files into a folder called 
+# staticfiles in our project root directory. This feature is very handy for 
+# serving static files, especially in production settings.
 
 # Logging Configuration
 
