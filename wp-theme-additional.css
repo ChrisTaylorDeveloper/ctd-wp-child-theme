@@ -1,0 +1,17 @@
+code {
+	background: rgba(0,0,0,.05);
+}
+
+pre {
+	padding: 0.4rem 0.6rem;
+	margin-top: 0;
+	background-color: rgb(220, 215, 202);
+}
+
+.before-pre {
+	margin-bottom: 0;
+}
+
+p.last-updated {
+	font-style: italic;
+}
