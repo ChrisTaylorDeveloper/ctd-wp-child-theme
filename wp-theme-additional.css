@@ -5,7 +5,7 @@ code {
 pre {
 	padding: 0.4rem 0.6rem;
 	margin-top: 0;
-	background-color: rgb(220, 215, 202);
+	font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
 }
 
 .before-pre {
@@ -14,4 +14,12 @@ pre {
 
 p.last-updated {
 	font-style: italic;
+}
+
+#mobile-menu-control-wrapper, #site-navigation, #masthead {
+	background-color: #fed302;
+}
+
+.site-info {
+	background-color: #fab609;
 }
