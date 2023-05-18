@@ -16,6 +16,7 @@ p.last-updated {
 	font-style: italic;
 }
 
+/*
 #mobile-menu-control-wrapper, #site-navigation, #masthead {
 	background-color: #fed302;
 }
@@ -29,17 +30,17 @@ p.last-updated {
 .site-description,
 #primary-menu a {
 		color: #0c3b62;
-}
+} */
 
 .homepage-service {
-	background-color: #e1ebea;
-	padding: 40px;
-	margin-bottom: 40px;
+	/* background-color: #e1ebea; */
+	/* padding: 40px; */
+	/* margin-bottom: 40px; */
 }
 
 .homepage-service ul {
-	margin-bottom: 0px;
-	margin-left: 0px;
+	/* margin-bottom: 0px; */
+	/* margin-left: 0px; */
 }
 
 ul.no-bull {
