@@ -8,19 +8,6 @@ Template:     generatepress
 Version:      0.1
 */
 
-.ctd-cta {
-    display: block;
-    width: 110px;
-    height: 50px;
-    background-color: #2da530;
-    text-align: center;
-    text-decoration: none;
-    padding-top: 15px;
-    box-sizing: border-box;
-    color: white;
-    border-radius: 5px;
-}
-
 code {
     background: rgba(0,0,0,.05);
 }
